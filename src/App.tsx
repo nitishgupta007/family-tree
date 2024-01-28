@@ -28,17 +28,16 @@ const App: React.FC = () => {
   }
 
   return (
-    <>
       <div className="App">
         <h2>RelationShip</h2>
-        <label>Name: </label>
+        <label htmlFor="name">Name</label>
         <input
           id="name"
           value={name}
           onChange={(e) => handleName(e.target.value)}
         ></input>
         <div>
-          <label>Relationship: </label>
+          <label htmlFor="relation">Relationship</label>
           <input
             id="relation"
             value={relation}
@@ -61,7 +60,6 @@ const App: React.FC = () => {
         <hr />
         <FamilyTree familyData={shanFamily} />
       </div>
-    </>
   );
 };
 

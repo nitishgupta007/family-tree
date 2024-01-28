@@ -1,7 +1,7 @@
 import { Person } from "../types/type";
 import findPersonByName from "../util/person";
 import findParent from "../util/parent";
-
+import siblingsParent from '../util/siblingsParent';
 const Relationships = (familyData: Person, name: string, relation: string) => {
   let gender: string =
     relation === "BROTHER" ||
@@ -13,48 +13,37 @@ const Relationships = (familyData: Person, name: string, relation: string) => {
       ? "Male"
       : "Female";
   let identifier: string;
+  const isRoot = name === "king shan" || name === "queen anga";
   const findRelations = (name: string, familyData: Person): Person[] => {
     const person = findPersonByName(name, familyData);
-    console.log(person);
 
     if (!person) {
       return [];
     }
 
-    const parent =
-      name === "king shan" || name === "queen anga"
-        ? person
-        : findParent(name, familyData);
-    console.log(parent);
+    const parent = isRoot ? person : findParent(name, familyData);
 
     if (!parent || !parent.children) {
       let check: any = person?.relationship === "Spouse" ? familyData : [];
-
       return check;
     }
 
     if (relation === "PATERNAL UNCLE" || relation === "PATERNAL AUNT") {
       const siblings = findParent(parent.name, familyData);
-      let uncle: any = siblings?.children?.filter(
-        (item: any) => item.name !== parent?.name
-      );
+      let uncle: Array<Person> = siblingsParent(siblings, parent);
       return parent?.gender === gender ? uncle : [];
     }
 
     if (relation === "MATERNAL UNCLE" || relation === "MATERNAL AUNT") {
       const siblings = findParent(parent.name, familyData);
-      let uncle: any = siblings?.children?.filter(
-        (item: any) => item.name !== parent?.name
-      );
+      let uncle: Array<Person> = siblingsParent(siblings, parent);
       return parent?.gender === "Female" ? uncle : [];
     }
 
     if (relation === "COUSINS") {
       let cousins: Array<Person> = [];
       const siblings = findParent(parent.name, familyData);
-      let uncle: any = siblings?.children?.filter(
-        (item: any) => item.name !== parent?.name
-      );
+      let uncle: Array<Person> = siblingsParent(siblings, parent);
       uncle?.map((item: any) => {
         item?.children ? cousins?.push(item?.children) : "";
       });
@@ -94,24 +83,22 @@ const Relationships = (familyData: Person, name: string, relation: string) => {
         ) || []
       );
     } else if (relation === "FATHER" || relation === "MOTHER") {
-      let result =
-        name === "king shan" || name === "queen anga"
-          ? null
+      let result = isRoot ? null
           : parent?.gender === gender
           ? parent.name
           : (parent?.spouse as Person | any);
       return result;
     } else if (relation === "CHILDREN") {
-      let child: any;
-      name === "king shan" || name === "queen anga"
-        ? (child = parent)
-        : (child = parent?.children?.find(
+      let childs: Person | void;
+      isRoot
+        ? (childs = parent)
+        : (childs = parent?.children?.find(
             (child: Person) => child.name === name || child.spouse === name
           ));
-      return child?.children || [];
+      return childs?.children || [];
     } else if (relation === "SON" || relation === "DAUGHTER") {
-      let childs: any;
-      name === "king shan" || name === "queen anga"
+      let childs: Person | void;
+      isRoot
         ? (childs = parent)
         : (childs = parent?.children?.find(
             (child: Person) => child.name === name || child.spouse === name
@@ -127,7 +114,7 @@ const Relationships = (familyData: Person, name: string, relation: string) => {
   const PersonRelation = findRelations(name, familyData);
 
   const renderPeople = (people: Person[], relation: string): JSX.Element[] => {
-    let output: any = [];
+    let output: Array<Person | string> = [];
     let primary: any = [];
 
     switch (relation) {
