@@ -38,7 +38,7 @@ const RelationForm: React.FC<RelationFormProps> = ({ handleName, handleRelation,
         </div>
         {response ? (
           <>
-            <h2>{relation}</h2>
+            <h4 className='formLabel'>{relation}</h4>
             <strong>{response.toString()}</strong>
           </>
         ) : (

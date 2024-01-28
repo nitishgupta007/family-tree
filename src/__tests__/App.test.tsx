@@ -26,7 +26,7 @@ test('handles relationship input correctly', () => {
 
 test('displays correct response after successful search', async () => {
   const mockRelationships = jest.fn(() => ['Some', 'Expected', 'Response']);
-  jest.mock('./components/Relationships', () => mockRelationships);
+  jest.mock('../components/RelationForm', () => mockRelationships);
 
   render(<App />);
 
@@ -39,6 +39,6 @@ test('displays correct response after successful search', async () => {
   fireEvent.click(searchButton);
 
   await waitFor(() => {
-    expect(mockRelationships).toHaveBeenCalledWith(expect.any(Array), 'john', 'PARENT');
+    expect(mockRelationships).toHaveBeenCalledWith(expect.any(Array), 'ish', 'PARENT');
   });
 });

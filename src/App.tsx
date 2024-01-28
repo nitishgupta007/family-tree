@@ -24,13 +24,13 @@ const App: React.FC = () => {
         setResponse(response as any);
       }
     } catch (e: any) {
-      alert("Error, Please insert correct input and retry.");
+      window.alert("Error, Please insert correct input and retry.");
     }
   }
 
   return (
     <>
-      <div>
+      <div className="App">
         <RelationForm 
         handleName={handleName} 
         handleRelation={handleRelation} 
@@ -39,7 +39,6 @@ const App: React.FC = () => {
         relation={relation}
         response={response}
         />
-        <hr />
         <div className="App">
           <FamilyTree familyData={shanFamily} />
         </div>
