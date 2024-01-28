@@ -8,13 +8,15 @@ interface FamilyTreeProps {
 const FamilyTree: React.FC<FamilyTreeProps> = ({ familyData }) => {
   const renderFamilyTree = (person: Person, index: number): JSX.Element => {
     return (
-          <div className="node" key={index}>
-            <div>
-              <span className={`label ${person.gender.toLowerCase()}`}>
+          <div key={index}>
+            <div className="node">
+              <span className="label">
+                <strong className={`label ${person.gender.toLowerCase()}`}>
                 {person.name}
+              </strong>
+                {person.spouse && <strong className={`label ${person.gender === 'Male' ? 'female' : 'male'}`}>{person.spouse}</strong>}
               </span>
-              {person.spouse && <span className={`label ${person.gender === 'Male' ? 'female' : 'male'}`}>{person.spouse}</span>}
-            </div>
+              </div>
             {person.children && (
               <div className="children">
                 {person.children.map((child, index) => (

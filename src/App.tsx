@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FamilyTree from "./components/FamilyTree";
 import Relationships from "./components/Relationships";
 import shanFamily from "./family-tree-data.json";
+import RelationForm from "./components/RelationForm";
 
 const App: React.FC = () => {
   const [name, setName] = useState("");
@@ -9,11 +10,11 @@ const App: React.FC = () => {
   const [response, setResponse] = useState([]);
 
   function handleName(value: string) {
-    setName(value);
+    setName(value.toLowerCase());
   }
 
   function handleRelation(value: string) {
-    setRelation(value);
+    setRelation(value.toUpperCase());
   }
 
   function handleSearch() {
@@ -23,43 +24,28 @@ const App: React.FC = () => {
         setResponse(response as any);
       }
     } catch (e: any) {
-      window.alert("Error, Please insert correct input and retry.");
+      alert("Error, Please insert correct input and retry.");
     }
   }
 
   return (
-      <div className="App">
-        <h2>RelationShip</h2>
-        <label htmlFor="name">Name</label>
-        <input
-          id="name"
-          value={name}
-          onChange={(e) => handleName(e.target.value)}
-        ></input>
-        <div>
-          <label htmlFor="relation">Relationship</label>
-          <input
-            id="relation"
-            value={relation}
-            onChange={(e) => handleRelation(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <button type="button" onClick={() => handleSearch()}>
-            Search
-          </button>
-        </div>
-        {response ? (
-          <div>
-            <h2>{relation}</h2>
-            <div>{response.toString()}</div>
-          </div>
-        ) : (
-          ""
-        )}
+    <>
+      <div>
+        <RelationForm 
+        handleName={handleName} 
+        handleRelation={handleRelation} 
+        handleSearch={handleSearch} 
+        name={name} 
+        relation={relation}
+        response={response}
+        />
         <hr />
-        <FamilyTree familyData={shanFamily} />
+        <div className="App">
+          <FamilyTree familyData={shanFamily} />
+        </div>
       </div>
+      
+    </>
   );
 };
 

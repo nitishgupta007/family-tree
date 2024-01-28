@@ -1,4 +1,3 @@
-import React from "react";
 import shanFamily from "../family-tree-data.json";
 import Relationships from "../components/Relationships";
 
@@ -7,7 +6,7 @@ describe("FamilyTree", () => {
   beforeEach(() => (family = shanFamily));
 
   describe("Problem 1: Meet the family", () => {
-    describe("when given a name and a relationship as an input, the output are the people that correspond to the relationship.", () => {
+    describe("Give a name and a relationship as an input, the output are the person that correspond to the relationship.", () => {
       describe.each`
         name            | relationship        | output
         ${"drita"}      | ${"PATERNAL UNCLE"} | ${["ish", "vich", "vyan"]}
@@ -59,14 +58,13 @@ describe("FamilyTree", () => {
         ${"ish"}        | ${"SISTER"}         | ${["satya"]}
         ${"jata"}       | ${"SISTER"}         | ${["driya"]}
         ${"kriya"}      | ${"SISTER"}         | ${[]}
-        ${"queen anga"} | ${"GRANDDAUGHTER"}  | ${["chika", "satvy"]}
-        ${"ambi"}       | ${"GRANDDAUGHTER"}  | ${["driya"]}
-        ${"vich"}       | ${"GRANDDAUGHTER"}  | ${["lavnya"]}
-        ${"satya"}      | ${"GRANDDAUGHTER"}  | ${[]}
+        ${"queen anga"} | ${"GRAND DAUGHTER"}  | ${["chika", "satvy"]}
+        ${"ambi"}       | ${"GRAND DAUGHTER"}  | ${["driya"]}
+        ${"vich"}       | ${"GRAND DAUGHTER"}  | ${["lavnya"]}
+        ${"satya"}      | ${"GRAND DAUGHTER"}  | ${[]}
       `("$relationship", ({ name, relationship, output }) => {
         it(`${name}'s ${relationship}: ${output}`, () => {
           const result: any = Relationships(family, name, relationship);
-
           expect(result).toEqual(output);
         });
       });

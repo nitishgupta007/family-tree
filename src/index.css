@@ -29,17 +29,18 @@ code {
 }
 
 .label {
+  display: flex;
   padding: 5px;
-  border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 10px;
   text-align: center;
   margin-left: 5px;
-  width: 80px;
+  width: 105px;
 }
 
 .children {
   display: flex;
-  margin-top: 10px;
+  border: 1px solid black;
+  margin: 10px 0 5px 5px;
 }
 
 .male{
@@ -49,3 +50,15 @@ code {
 .female{
   background-color: lightpink;
 }
+
+.relationForm {
+  display: block;
+}
+
+
+.formLabel {
+  color: #B4886B;
+  font-weight: bold;
+  width: 130px;
+}
+.formLabel:after { content: ": " }

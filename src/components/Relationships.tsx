@@ -13,7 +13,9 @@ const Relationships = (familyData: Person, name: string, relation: string) => {
       ? "Male"
       : "Female";
   let identifier: string;
+
   const isRoot = name === "king shan" || name === "queen anga";
+
   const findRelations = (name: string, familyData: Person): Person[] => {
     const person = findPersonByName(name, familyData);
 
@@ -24,8 +26,8 @@ const Relationships = (familyData: Person, name: string, relation: string) => {
     const parent = isRoot ? person : findParent(name, familyData);
 
     if (!parent || !parent.children) {
-      let check: any = person?.relationship === "Spouse" ? familyData : [];
-      return check;
+      // let check: Array<Person> | void = person?.relationship === "Spouse" ? familyData : undefined;
+      return [];
     }
 
     if (relation === "PATERNAL UNCLE" || relation === "PATERNAL AUNT") {
@@ -41,23 +43,26 @@ const Relationships = (familyData: Person, name: string, relation: string) => {
     }
 
     if (relation === "COUSINS") {
-      let cousins: Array<Person> = [];
+      const cousins: Person[] = [];
       const siblings = findParent(parent.name, familyData);
       let uncle: Array<Person> = siblingsParent(siblings, parent);
-      uncle?.map((item: any) => {
-        item?.children ? cousins?.push(item?.children) : "";
+      uncle?.forEach((item: Person) => {
+        if (item.children && Array.isArray(item.children)) {
+          cousins.push(...item.children);
+        }
       });
-
-      return cousins?.flat();
+      return cousins;
     }
 
-    if (relation === "GRANDDAUGHTER") {
+    if (relation === "GRAND DAUGHTER") {
       let grandDaughter: Array<Person> = [];
-      person?.children?.map((item: any) => {
-        item?.children ? grandDaughter?.push(item?.children) : "";
+      person?.children?.forEach((item: Person) => {
+        if (item?.children) {
+          grandDaughter?.push(...item.children);
+        }
       });
-
-      return grandDaughter?.flat();
+      
+      return grandDaughter;
     }
 
     if (relation === "SISTER IN LAW" || relation === "BROTHER IN LAW") {
@@ -114,7 +119,7 @@ const Relationships = (familyData: Person, name: string, relation: string) => {
   const PersonRelation = findRelations(name, familyData);
 
   const renderPeople = (people: Person[], relation: string): JSX.Element[] => {
-    let output: Array<Person | string> = [];
+    let output: any = [];
     let primary: any = [];
 
     switch (relation) {
@@ -170,12 +175,11 @@ const Relationships = (familyData: Person, name: string, relation: string) => {
         output = primary?.filter(Boolean);
         return output;
 
-      case "GRANDDAUGHTER":
+      case "GRAND DAUGHTER":
         primary = people?.map((person: Person) =>
           person?.gender === "Female" ? person.name : ""
         );
         output = primary?.filter(Boolean);
-
         return output;
 
       default:
