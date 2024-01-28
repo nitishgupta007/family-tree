@@ -1,0 +1,113 @@
+{
+    "name": "king shan",
+    "gender": "Male",
+    "relationship": "Spouse",
+    "spouse": "queen anga",
+    "children": [
+      {
+        "name": "ish",
+        "gender": "Male",
+        "relationship": "Child"
+      },
+      {
+        "name": "chit",
+        "gender": "Male",
+        "relationship": "Child",
+        "spouse": "ambi",
+        "children": [
+          {
+            "name": "drita",
+            "gender": "Male",
+            "relationship": "Child",
+            "spouse": "jaya",
+            "children": [
+              {
+                "name": "jata",
+                "gender": "Male",
+                "relationship": "Child"
+              },
+              {
+                "name": "driya",
+                "gender": "Female",
+                "relationship": "Child",
+                "spouse": "mnu"
+              }
+            ]
+          },
+          {
+            "name": "vrita",
+            "gender": "Male",
+            "relationship": "Child"
+          }
+        ]
+      },
+      {
+        "name": "vich",
+        "gender": "Male",
+        "relationship": "Child",
+        "spouse": "lika",
+        "children": [
+          {
+            "name": "vila",
+            "gender": "Male",
+            "relationship": "Child",
+            "spouse": "jnki",
+            "children": [
+              {
+                "name": "lavnya",
+                "gender": "Female",
+                "relationship": "Child",
+                "spouse": "gru"
+              }
+            ]
+          },
+          {
+            "name": "chika",
+            "gender": "Female",
+            "relationship": "Child",
+            "spouse": "kpila"
+          }
+        ]
+      },
+      {
+        "name": "satya",
+        "gender": "Female",
+        "relationship": "Child",
+        "spouse": "vyan",
+        "children": [
+          {
+            "name": "satvy",
+            "gender": "Female",
+            "relationship": "Child",
+            "spouse": "asva"
+          },
+          {
+            "name": "savya",
+            "gender": "Male",
+            "relationship": "Child",
+            "spouse": "krpi",
+            "children": [
+              {
+                "name": "kriya",
+                "gender": "Male",
+                "relationship": "Child"
+              }
+            ]
+          },
+          {
+            "name": "saayan",
+            "gender": "Male",
+            "relationship": "Child",
+            "spouse": "mina",
+            "children": [
+              {
+                "name": "misa",
+                "gender": "Male",
+                "relationship": "Child"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
