@@ -24,13 +24,13 @@ const App: React.FC = () => {
         setResponse(response as any);
       }
     } catch (e: any) {
-      window.alert("Error, Please insert correct input and retry.");
+      alert("Error, Please insert correct input and retry.");
     }
   }
 
   return (
     <>
-      <div className="App">
+      <div>
         <RelationForm 
         handleName={handleName} 
         handleRelation={handleRelation} 

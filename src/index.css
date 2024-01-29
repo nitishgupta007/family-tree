@@ -19,6 +19,19 @@ code {
   align-items: center;
 }
 
+.displayFlex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.noteBlock p {
+  display: block;
+  font-size: 10px;
+  margin: 0px;
+  font-weight: bold;
+  color: #da7736;
+}
+
 .tree {
   display: flex;
   justify-content: center;
